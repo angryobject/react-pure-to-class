@@ -71,10 +71,8 @@ module.exports = function(file, api, options) {
     return cls;
   };
 
-  return j(file.source)
-    .find(j.FunctionDeclaration)
-    .filter(hasJXSReturn)
-    .replaceWith(p => {
+  const replaceWithClass = path =>
+    path.filter(hasJXSReturn).replaceWith(p => {
       const name = p.value.id.name;
       const params = p.value.params;
       const body = p.value.body;
@@ -82,6 +80,13 @@ module.exports = function(file, api, options) {
       body.body.unshift(createPropsDecl(params));
 
       return createClassComponent(name, body);
-    })
-    .toSource(printOptions);
+    });
+
+  const root = j(file.source);
+
+  [root.find(j.FunctionDeclaration), root.find(j.FunctionExpression)].forEach(
+    replaceWithClass
+  );
+
+  return root.toSource(printOptions);
 };
