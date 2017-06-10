@@ -32,5 +32,5 @@ try {
   execSync(`rm ${DESTINATION}`);
   console.log(`Removed symlink ${DESTINATION}`);
 } catch (e) {
-  console.log(`Something went wrong. Couldn\'t remove symlink ${DESTINATION}`);
+  console.log(`Something went wrong. Couldn't remove symlink ${DESTINATION}`);
 }

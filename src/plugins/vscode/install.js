@@ -17,6 +17,6 @@ try {
   console.log(`Created a symlink in ${DESTINATION}`);
 } catch (e) {
   console.log(
-    `Something went wrong. Couldn\'t create a symlink in ${DESTINATION}`
+    `Something went wrong. Couldn't create a symlink in ${DESTINATION}`
   );
 }
