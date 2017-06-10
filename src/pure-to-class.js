@@ -16,7 +16,7 @@ module.exports = function(file, api, options) {
       .filter(p => j.JSXElement.check(p.value.argument))
       .size() > 0;
 
-  const hasName = path => !!(path.id && path.id.name);
+  const hasName = path => !!(path.value.id && path.value.id.name);
 
   const canBeReplaced = path => hasJXSReturn(path) && hasName(path);
 
