@@ -7,7 +7,9 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
-    "precommit": "npm test && npm run lint"
+    "precommit": "npm test && npm run lint",
+    "install-vscode-plugin": "./src/plugins/vscode/install.js",
+    "uninstall-vscode-plugin": "./src/plugins/vscode/uninstall.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
