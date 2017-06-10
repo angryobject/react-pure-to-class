@@ -16,6 +16,10 @@ module.exports = function(file, api, options) {
       .filter(p => j.JSXElement.check(p.value.argument))
       .size() > 0;
 
+  const hasName = path => !!(path.id && path.id.name);
+
+  const canBeReplaced = path => hasJXSReturn(path) && hasName(path);
+
   const createPropsDecl = params => {
     const isLast = i => i === params.length - 1;
     const nameIsProps = p => p.name === 'props';
@@ -72,7 +76,7 @@ module.exports = function(file, api, options) {
   };
 
   const replaceWithClass = path =>
-    path.filter(hasJXSReturn).replaceWith(p => {
+    path.filter(canBeReplaced).replaceWith(p => {
       const name = p.value.id.name;
       const params = p.value.params;
       const body = p.value.body;
