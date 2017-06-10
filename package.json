@@ -6,13 +6,15 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "precommit": "npm test && npm run lint"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
     "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
+    "husky": "^0.13.4",
     "jest": "^20.0.4",
     "prettier": "^1.4.4"
   },
