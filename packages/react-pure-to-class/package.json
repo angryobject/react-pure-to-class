@@ -1,0 +1,26 @@
+{
+  "name": "react-pure-to-class",
+  "descriptsion": "A transformer to covert pure component to class component",
+  "version": "1.0.0",
+  "main": "pure-to-class.js",
+  "license": "MIT",
+  "bin": "./cli.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "jscodeshift": "^0.3.30"
+  },
+  "author": {
+    "name": "Max Shishkin"
+  },
+  "homepage": "https://github.com/angryobject/react-pure-to-class",
+  "keywords": [
+    "codemod",
+    "jscodeshift",
+    "react"
+  ]
+}

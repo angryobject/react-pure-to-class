@@ -1,0 +1,44 @@
+{
+  "name": "vscode-react-pure-to-class",
+  "displayName": "React Pure To Class",
+  "description": "Covert pure react components to class components",
+  "version": "1.0.0",
+  "publisher": "angryobject",
+  "license": "MIT",
+  "author": {
+    "name": "Max Shishkin"
+  },
+  "homepage": "https://github.com/angryobject/react-pure-to-class",
+  "keywords": [
+    "codemod",
+    "jscodeshift",
+    "react",
+    "vscode"
+  ],
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+      "Formatters",
+      "Other"
+  ],
+  "scripts":{
+    "install": "./install.js",
+    "uninstall": "./uninstall.js"
+  },
+  "activationEvents": [
+    "onCommand:extension.reactPureToClass"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.reactPureToClass",
+        "title": "React Pure To Class"
+      }
+    ]
+  },
+  "dependencies": {
+    "react-pure-to-class": "^1.0.0"
+  }
+}

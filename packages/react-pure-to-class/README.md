@@ -50,3 +50,10 @@ const transformedSource = pureToClass(
   options // or empty object for defaults
 );
 ```
+
+It also works as a cli, which may be useful in vim to transform selected code, like so:
+
+```
+:'<,'>!react-pure-to-class
+```
+

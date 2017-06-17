@@ -1,15 +1,8 @@
 {
-  "name": "react-pure-to-class",
-  "descriptsion": "A transformer to covert pure component to class component",
-  "version": "1.0.0",
-  "main": "src/pure-to-class.js",
-  "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint .",
-    "precommit": "npm test && npm run lint",
-    "install-vscode-plugin": "./src/plugins/vscode/install.js",
-    "uninstall-vscode-plugin": "./src/plugins/vscode/uninstall.js"
+    "lint": "eslint packages",
+    "test": "lerna run test",
+    "precommit": "npm test && npm run lint"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -17,10 +10,7 @@
     "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
     "husky": "^0.13.4",
-    "jest": "^20.0.4",
+    "lerna": "^2.0.0-rc.5",
     "prettier": "^1.4.4"
-  },
-  "dependencies": {
-    "jscodeshift": "^0.3.30"
   }
 }

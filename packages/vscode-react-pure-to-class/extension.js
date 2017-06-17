@@ -2,7 +2,7 @@
 
 const vscode = require('vscode');
 const jscodeshift = require('jscodeshift');
-const pureToClass = require('../../pure-to-class');
+const pureToClass = require('react-pure-to-class');
 
 function activate(context) {
   const disposable = vscode.commands.registerCommand(
