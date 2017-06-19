@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "react-pure-to-class-vscode",
   "displayName": "React Pure To Class",
   "description": "Covert pure react components to class components",
