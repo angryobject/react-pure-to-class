@@ -2,7 +2,7 @@
   "private": true,
   "name": "react-pure-to-class-vscode",
   "displayName": "React Pure To Class",
-  "description": "Covert pure react components to class components",
+  "description": "Convert pure react components to class components",
   "version": "1.0.0",
   "publisher": "angryobject",
   "license": "MIT",

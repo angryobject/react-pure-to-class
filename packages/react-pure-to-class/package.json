@@ -1,6 +1,6 @@
 {
   "name": "react-pure-to-class",
-  "descriptsion": "A transformer to covert pure component to class component",
+  "descriptsion": "A transformer to convert pure component to class component",
   "version": "1.0.0",
   "main": "pure-to-class.js",
   "license": "MIT",
