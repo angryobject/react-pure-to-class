@@ -1,5 +1,5 @@
 {
-  "name": "vscode-react-pure-to-class",
+  "name": "react-pure-to-class-vscode",
   "displayName": "React Pure To Class",
   "description": "Covert pure react components to class components",
   "version": "1.0.0",
@@ -23,10 +23,6 @@
       "Formatters",
       "Other"
   ],
-  "scripts":{
-    "install": "./install.js",
-    "uninstall": "./uninstall.js"
-  },
   "activationEvents": [
     "onCommand:extension.reactPureToClass"
   ],
