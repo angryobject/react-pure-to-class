@@ -1,7 +1,7 @@
 {
   "scripts": {
     "lint": "eslint packages",
-    "test": "lerna run test",
+    "test": "jest packages/react-pure-to-class",
     "precommit": "npm test && npm run lint"
   },
   "devDependencies": {
@@ -10,6 +10,7 @@
     "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
     "husky": "^0.13.4",
+    "jest": "^20.0.4",
     "lerna": "^2.0.0-rc.5",
     "prettier": "^1.4.4"
   }

@@ -5,12 +5,7 @@
   "main": "pure-to-class.js",
   "license": "MIT",
   "bin": "./cli.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "devDependencies": {
-    "jest": "^20.0.4"
-  },
+  "devDependencies": {},
   "dependencies": {
     "jscodeshift": "^0.3.30"
   },
