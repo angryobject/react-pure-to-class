@@ -1,11 +1,10 @@
 {
   "name": "react-pure-to-class",
   "description": "A transformer to convert pure component to class component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "pure-to-class.js",
   "license": "MIT",
   "bin": "./cli.js",
-  "devDependencies": {},
   "dependencies": {
     "jscodeshift": "^0.3.30"
   },
