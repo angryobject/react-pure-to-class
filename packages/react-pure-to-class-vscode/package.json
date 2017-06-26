@@ -37,5 +37,9 @@
   },
   "dependencies": {
     "react-pure-to-class": "^1.0.1"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/angryobject/react-pure-to-class"
   }
 }

@@ -16,5 +16,9 @@
     "codemod",
     "jscodeshift",
     "react"
-  ]
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/angryobject/react-pure-to-class"
+  }
 }
