@@ -5,7 +5,10 @@
   "main": "pure-to-class.js",
   "license": "MIT",
   "bin": "./cli.js",
-  "dependencies": {
+  "peerDependencies": {
+    "jscodeshift": "^0.3.30"
+  },
+  "devDependencies": {
     "jscodeshift": "^0.3.30"
   },
   "author": {
