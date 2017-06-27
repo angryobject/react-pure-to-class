@@ -26,6 +26,9 @@ function activate(context) {
       const doc = editor.document;
 
       if (['javascript', 'javascriptreact'].indexOf(doc.languageId) === -1) {
+        vscode.window.showInformationMessage(
+          'Only available for javascript/react file types'
+        );
         return;
       }
 
@@ -44,7 +47,9 @@ function activate(context) {
           {}
         );
       } catch (e) {
-        vscode.window.showInformationMessage('Bad selection');
+        vscode.window.showInformationMessage(
+          'Something went wrong (probably bad selection)'
+        );
         return;
       }
 
