@@ -1,8 +1,17 @@
 'use strict';
 
 const vscode = require('vscode');
-const jscodeshift = require('jscodeshift');
+const { execSync } = require('child_process');
 const pureToClass = require('./pure-to-class');
+
+let jscodeshift;
+
+try {
+  jscodeshift = require('jscodeshift');
+} catch (e) {
+  jscodeshift = require(execSync('npm root -g', { encoding: 'utf8' }).trim() +
+    '/jscodeshift');
+}
 
 function activate(context) {
   const disposable = vscode.commands.registerCommand(
