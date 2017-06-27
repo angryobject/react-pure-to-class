@@ -81,7 +81,9 @@ module.exports = function(file, api, options) {
       const params = p.value.params;
       const body = p.value.body;
 
-      body.body.unshift(createPropsDecl(params));
+      if (params.length) {
+        body.body.unshift(createPropsDecl(params));
+      }
 
       return createClassComponent(name, body);
     });

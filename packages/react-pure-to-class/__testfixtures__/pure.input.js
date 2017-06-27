@@ -11,3 +11,7 @@ module.exports = function MyComponent(props) {
 export default function MyComponent(props) {
   return <div>{props.message}</div>;
 };
+
+function MyComponent() {
+  return <div>bla-bla</div>;
+}

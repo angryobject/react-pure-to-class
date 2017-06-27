@@ -41,3 +41,13 @@ export default class MyComponent extends React.Component {
     return <div>{props.message}</div>;
   }
 }
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return <div>bla-bla</div>;
+  }
+}
