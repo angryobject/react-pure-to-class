@@ -3,7 +3,7 @@ Thumbs.db
 
 *.swp
 .idea
-.vscode
+./.vscode
 
 npm-debug.log
 lerna-debug.log
