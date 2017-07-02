@@ -3,7 +3,7 @@
   "name": "react-pure-to-class-vscode",
   "displayName": "React Pure To Class",
   "description": "Convert pure react components to class components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "angryobject",
   "license": "MIT",
   "author": {
