@@ -1,0 +1,1 @@
+../../react-pure-to-class/pure-to-class.js

@@ -35,9 +35,14 @@
       }
     ]
   },
+  "scripts": {
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
   "devDependencies": {
     "jscodeshift": "^0.3.30",
-    "vscode": "^1.1.1"
+    "vscode": "^1.1.1",
+    "webpack": "^3.0.0"
   },
   "repository": {
     "type": "git",
