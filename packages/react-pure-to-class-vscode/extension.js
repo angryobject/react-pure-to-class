@@ -1,6 +1,6 @@
 'use strict';
 
 const vscode = require('vscode');
-const { createExtension } = require('./bundle');
+const { init } = require('./__bundle');
 
-module.exports = createExtension(vscode);
+module.exports = init(vscode);

@@ -6,13 +6,13 @@ module.exports = {
   target: 'node',
 
   entry: {
-    index: './src/index.js',
+    index: './init.js',
   },
 
   output: {
     path: __dirname,
-    filename: 'bundle.js',
-    library: 'createExtension',
+    filename: '__bundle.js',
+    library: 'init',
     libraryTarget: 'commonjs',
   },
 
@@ -23,4 +23,6 @@ module.exports = {
       },
     }),
   ],
+
+  stats: 'none',
 };

@@ -42,7 +42,8 @@
   "devDependencies": {
     "jscodeshift": "^0.3.30",
     "vscode": "^1.1.1",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "react-pure-to-class": "^1.0.0"
   },
   "repository": {
     "type": "git",
