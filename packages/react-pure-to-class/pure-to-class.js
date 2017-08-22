@@ -10,15 +10,12 @@ module.exports = function(file, api, options) {
     trailingComma: true,
   };
 
-  const hasJXSReturn = path =>
-    j(path)
-      .find(j.ReturnStatement)
-      .filter(p => j.JSXElement.check(p.value.argument))
-      .size() > 0;
+  const canBeReplaced = path => j(path).find(j.JSXElement).size() > 0;
 
-  const hasName = path => !!(path.value.id && path.value.id.name);
-
-  const canBeReplaced = path => hasJXSReturn(path) && hasName(path);
+  const createBodyWithReturn = body =>
+    j.BlockStatement.check(body)
+      ? body
+      : j.blockStatement([j.returnStatement(body)]);
 
   const createPropsDecl = params => {
     const isLast = i => i === params.length - 1;
@@ -66,7 +63,7 @@ module.exports = function(file, api, options) {
 
   const createClassComponent = (name, renderBody) => {
     const cls = j.classDeclaration(
-      j.identifier(name),
+      name ? j.identifier(name) : null,
       j.classBody([createConstructor(), createRenderMethod(renderBody)])
     );
 
@@ -77,9 +74,9 @@ module.exports = function(file, api, options) {
 
   const replaceWithClass = path =>
     path.filter(canBeReplaced).replaceWith(p => {
-      const name = p.value.id.name;
+      const name = p.value.id && p.value.id.name;
       const params = p.value.params;
-      const body = p.value.body;
+      const body = createBodyWithReturn(p.value.body);
 
       if (params.length) {
         body.body.unshift(createPropsDecl(params));
@@ -90,9 +87,11 @@ module.exports = function(file, api, options) {
 
   const root = j(file.source);
 
-  [root.find(j.FunctionDeclaration), root.find(j.FunctionExpression)].forEach(
-    replaceWithClass
-  );
+  [
+    root.find(j.FunctionDeclaration),
+    root.find(j.FunctionExpression),
+    root.find(j.ArrowFunctionExpression),
+  ].forEach(replaceWithClass);
 
   return root.toSource(printOptions);
 };
