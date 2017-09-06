@@ -90,3 +90,19 @@ class StillReact extends React.Component {
     return 2 + 2;
   }
 }
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {
+      props: { items },
+    } = this;
+
+    return (<ul>
+      {items.map(item => <li>{item}</li>)}
+    </ul>);
+  }
+}

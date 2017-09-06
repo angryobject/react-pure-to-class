@@ -110,3 +110,21 @@ const StillReact = class extends React.Component {
     return 2 + 2;
   }
 };
+
+export const MyComponent = class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {
+      props: { items },
+    } = this;
+
+    return (
+      <ul>
+        {items.map(item => <li>{item}</li>)}
+      </ul>
+    );
+  }
+}

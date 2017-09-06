@@ -32,3 +32,9 @@ function StillReact() {
   const a = <div>bla-bla</div>;
   return 2 + 2;
 }
+
+function MyComponent({ items }) {
+  return (<ul>
+    {items.map(item => <li>{item}</li>)}
+  </ul>);
+}

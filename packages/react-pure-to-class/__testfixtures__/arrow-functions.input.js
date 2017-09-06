@@ -26,3 +26,7 @@ const StillReact = () => {
   const a = <div>bla-bla</div>;
   return 2 + 2;
 };
+
+export const MyComponent = ({ items }) => (<ul>
+  {items.map(item => <li>{item}</li>)}
+</ul>)
