@@ -16,9 +16,9 @@ module.exports = vscode => ({
 
         const doc = editor.document;
 
-        if (['javascript', 'javascriptreact'].indexOf(doc.languageId) === -1) {
+        if (['javascript', 'javascriptreact', 'typescript', 'typescriptreact'].indexOf(doc.languageId) === -1) {
           vscode.window.showInformationMessage(
-            'Only available for javascript/react file types'
+            'Only available for javascript or typescript file types'
           );
           return;
         }
