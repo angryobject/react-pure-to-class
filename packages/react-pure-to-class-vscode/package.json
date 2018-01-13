@@ -40,10 +40,10 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "jscodeshift": "^0.3.30",
+    "jscodeshift": "^0.4.0",
     "react-pure-to-class": "^1.1.1",
-    "vscode": "^1.1.1",
-    "webpack": "^3.0.0"
+    "vscode": "^1.1.10",
+    "webpack": "^3.10.0"
   },
   "repository": {
     "type": "git",

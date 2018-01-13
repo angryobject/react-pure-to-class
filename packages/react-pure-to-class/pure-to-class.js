@@ -11,8 +11,14 @@ module.exports = function(file, api, options) {
   };
 
   const canBeReplaced = path => {
-    const hasJSX = j(path).find(j.JSXElement).size() > 0;
-    const isInsideJSX = j(path).closest(j.JSXElement).size() > 0;
+    const hasJSX =
+      j(path)
+        .find(j.JSXElement)
+        .size() > 0;
+    const isInsideJSX =
+      j(path)
+        .closest(j.JSXElement)
+        .size() > 0;
 
     return hasJSX && !isInsideJSX;
   };

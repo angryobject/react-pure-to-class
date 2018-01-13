@@ -1,18 +1,21 @@
 {
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "lint": "eslint packages",
-    "test": "jest packages/react-pure-to-class",
+    "test": "jest",
     "precommit": "npm test && npm run lint",
     "publish-ext": "cd packages/react-pure-to-class-vscode && vsce publish"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^3.19.0",
-    "eslint-plugin-prettier": "^2.1.1",
-    "eslint-plugin-react": "^7.0.1",
-    "husky": "^0.13.4",
-    "jest": "^20.0.4",
-    "lerna": "^2.0.0-rc.5",
-    "prettier": "^1.4.4"
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "prettier": "^1.10.2"
   }
 }

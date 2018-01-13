@@ -18,8 +18,6 @@ export default props => {
   return <div>{props.message}</div>;
 };
 
-export default (props) => <div>{props.message}</div>;
-
 const nonReact = v => v.x + v.y;
 
 const StillReact = () => {
@@ -27,6 +25,6 @@ const StillReact = () => {
   return 2 + 2;
 };
 
-export const MyComponent = ({ items }) => (<ul>
+export const AnotherMyComponent = ({ items }) => (<ul>
   {items.map(item => <li>{item}</li>)}
 </ul>)

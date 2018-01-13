@@ -84,20 +84,6 @@ export default class extends React.Component {
   }
 }
 
-export default class extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      props,
-    } = this;
-
-    return <div>{props.message}</div>;
-  }
-}
-
 const nonReact = v => v.x + v.y;
 
 const StillReact = class extends React.Component {
@@ -111,7 +97,7 @@ const StillReact = class extends React.Component {
   }
 };
 
-export const MyComponent = class extends React.Component {
+export const AnotherMyComponent = class extends React.Component {
   constructor(props) {
     super(props);
   }

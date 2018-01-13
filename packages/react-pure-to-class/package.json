@@ -6,10 +6,10 @@
   "license": "MIT",
   "bin": "./cli.js",
   "peerDependencies": {
-    "jscodeshift": "^0.3.30"
+    "jscodeshift": "^0.4.0"
   },
   "devDependencies": {
-    "jscodeshift": "^0.3.30"
+    "jscodeshift": "^0.4.0"
   },
   "author": {
     "name": "Max Shishkin"
