@@ -37,3 +37,9 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+It makes some assumptions about functions that can be transformed:
+
+* function should has zero or one argument (i.e. `props`, though the name me be different)
+* the argument, if present, should be an identifier (`foo => {..}`) or object pattern(`({ foo }) => {...}`). This means array patterns (`([foo]) => {...}`) and default function parameters (`(foo = defaultFoo) => {...}`) don't work. `props` is always an object and default props are handled differently in React
+* the functions should not appear inside other functions, be property of an objects or method of a class

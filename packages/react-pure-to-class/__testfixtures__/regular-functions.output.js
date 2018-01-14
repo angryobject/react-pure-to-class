@@ -58,10 +58,7 @@ class MyComponent extends React.Component {
   }
 
   render() {
-    const {
-      props: p,
-    } = this;
-
+    const p = this.props;
     return p.children ? <div>{children}</div> : null;
   }
 }
@@ -76,8 +73,15 @@ const MyComponent = class extends React.Component {
   }
 }
 
-function nonReact(v) {
-  return v.x + v.y;
+class nonReact extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const v = this.props;
+    return v.x + v.y;
+  }
 }
 
 class StillReact extends React.Component {
@@ -97,12 +101,20 @@ class MyComponent extends React.Component {
   }
 
   render() {
-    const {
-      props: { items },
-    } = this;
+    const { items } = this.props;
+    return (
+      <ul>
+        {items.map(class extends React.Component {
+          constructor(props) {
+            super(props);
+          }
 
-    return (<ul>
-      {items.map(item => <li>{item}</li>)}
-    </ul>);
+          render() {
+            const item = this.props;
+            return <li>{item}</li>;
+          }
+        })}
+      </ul>
+    );
   }
 }

@@ -10,17 +10,29 @@ module.exports = function(file, api, options) {
     trailingComma: true,
   };
 
-  const canBeReplaced = path => {
-    const hasJSX =
-      j(path)
-        .find(j.JSXElement)
-        .size() > 0;
-    const isInsideJSX =
-      j(path)
-        .closest(j.JSXElement)
-        .size() > 0;
+  const areValidArguments = args => {
+    const hasOneArgumentMax = args.length <= 1;
+    const argumentIsIdentifierOrObjectPattern =
+      !args[0] || j.Identifier.check(args[0]) || j.ObjectPattern.check(args[0]);
 
-    return hasJSX && !isInsideJSX;
+    return hasOneArgumentMax && argumentIsIdentifierOrObjectPattern;
+  };
+
+  const isInsideFunctionOrObjectOrClass = path => {
+    const jp = j(path);
+
+    return (
+      jp.closest(j.FunctionDeclaration).size() ||
+      jp.closest(j.FunctionExpression).size() ||
+      jp.closest(j.ArrowFunctionExpression).size() ||
+      jp.closest(j.ObjectExpression).size() ||
+      jp.closest(j.ClassBody).size()
+    );
+  };
+
+  const canBeReplaced = path => {
+    const hasValidArguments = areValidArguments(path.value.params);
+    return hasValidArguments && !isInsideFunctionOrObjectOrClass(path);
   };
 
   const createBodyWithReturn = body =>
@@ -28,25 +40,21 @@ module.exports = function(file, api, options) {
       ? body
       : j.blockStatement([j.returnStatement(body)]);
 
-  const createPropsDecl = params => {
-    const isLast = i => i === params.length - 1;
-    const nameIsProps = p => p.name === 'props';
+  const createPropsDecl = param => {
+    if (j.ObjectPattern.check(param) || param.name !== 'props') {
+      return j.variableDeclaration('const', [
+        j.variableDeclarator(
+          param,
+          j.memberExpression(j.thisExpression(), j.identifier('props'))
+        ),
+      ]);
+    }
+
+    const props = j.property('init', j.identifier('props'), param);
+    props.shorthand = true;
 
     return j.variableDeclaration('const', [
-      j.variableDeclarator(
-        j.objectPattern(
-          params.map((path, i) => {
-            const prop = j.property(
-              'init',
-              isLast(i) ? j.identifier('props') : path,
-              path
-            );
-            prop.shorthand = !isLast(i) || nameIsProps(path);
-            return prop;
-          })
-        ),
-        j.thisExpression()
-      ),
+      j.variableDeclarator(j.objectPattern([props]), j.thisExpression()),
     ]);
   };
 
@@ -86,11 +94,11 @@ module.exports = function(file, api, options) {
   const replaceWithClass = path =>
     path.filter(canBeReplaced).replaceWith(p => {
       const name = p.value.id && p.value.id.name;
-      const params = p.value.params;
+      const param = p.value.params[0];
       const body = createBodyWithReturn(p.value.body);
 
-      if (params.length) {
-        body.body.unshift(createPropsDecl(params));
+      if (param) {
+        body.body.unshift(createPropsDecl(param));
       }
 
       return createClassComponent(name, body);

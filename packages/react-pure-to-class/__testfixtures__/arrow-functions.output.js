@@ -34,10 +34,7 @@ const MyComponent = class extends React.Component {
   }
 
   render() {
-    const {
-      props: p,
-    } = this;
-
+    const p = this.props;
     return p.children ? <div>{p.children}</div> : null;
   }
 };
@@ -48,10 +45,7 @@ export const MyComponent = class extends React.Component {
   }
 
   render() {
-    const {
-      props: p,
-    } = this;
-
+    const p = this.props;
     return p.children ? <div>{p.children}</div> : null;
   }
 };
@@ -84,7 +78,16 @@ export default class extends React.Component {
   }
 }
 
-const nonReact = v => v.x + v.y;
+const nonReact = class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const v = this.props;
+    return v.x + v.y;
+  }
+};
 
 const StillReact = class extends React.Component {
   constructor(props) {
@@ -103,9 +106,7 @@ export const AnotherMyComponent = class extends React.Component {
   }
 
   render() {
-    const {
-      props: { items },
-    } = this;
+    const { items } = this.props;
 
     return (
       <ul>
