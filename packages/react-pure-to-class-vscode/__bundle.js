@@ -57329,10 +57329,11 @@ module.exports = function(file, api, options) {
     return hasOneArgumentMax && argumentIsIdentifierOrObjectPattern;
   };
 
-  const isInsideFunctionOrObjectOrClass = path => {
+  const isInsideJSXOrFunctionOrObjectOrClass = path => {
     const jp = j(path);
 
     return (
+      jp.closest(j.JSXElement).size() ||
       jp.closest(j.FunctionDeclaration).size() ||
       jp.closest(j.FunctionExpression).size() ||
       jp.closest(j.ArrowFunctionExpression).size() ||
@@ -57343,7 +57344,7 @@ module.exports = function(file, api, options) {
 
   const canBeReplaced = path => {
     const hasValidArguments = areValidArguments(path.value.params);
-    return hasValidArguments && !isInsideFunctionOrObjectOrClass(path);
+    return hasValidArguments && !isInsideJSXOrFunctionOrObjectOrClass(path);
   };
 
   const createBodyWithReturn = body =>
