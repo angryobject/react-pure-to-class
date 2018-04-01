@@ -33110,6 +33110,10 @@ module.exports = vscode => ({
       'extension.reactPureToClass',
       () => {
         const editor = vscode.window.activeTextEditor;
+        const config = vscode.workspace.getConfiguration('reactPureToClass');
+        const supportedLangs = ['javascript', 'javascriptreact'].concat(
+          config.typescript ? ['typescript', 'typescriptreact'] : []
+        );
 
         if (!editor) {
           return;
@@ -33117,10 +33121,12 @@ module.exports = vscode => ({
 
         const doc = editor.document;
 
-        if (['javascript', 'javascriptreact'].indexOf(doc.languageId) === -1) {
-          vscode.window.showInformationMessage(
-            'Only available for javascript/react file types'
-          );
+        if (supportedLangs.indexOf(doc.languageId) === -1) {
+          const msg = config.typescript
+            ? 'Only available for javascript/typescript/react file types'
+            : 'Only available for javascript/react file types. Check settings for typescript support';
+
+          vscode.window.showInformationMessage(msg);
           return;
         }
 
