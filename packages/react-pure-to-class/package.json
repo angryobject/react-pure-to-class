@@ -9,7 +9,7 @@
     "jscodeshift": "^0.4.0"
   },
   "devDependencies": {
-    "jscodeshift": "^0.4.0"
+    "jscodeshift": "^0.5.1"
   },
   "author": {
     "name": "Max Shishkin"

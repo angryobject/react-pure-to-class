@@ -92,11 +92,11 @@ module.exports = function(file, api, options) {
     return cls;
   };
 
-  const replaceWithClass = path =>
-    path.filter(canBeReplaced).replaceWith(p => {
-      const name = p.value.id && p.value.id.name;
-      const param = p.value.params[0];
-      const body = createBodyWithReturn(p.value.body);
+  const replaceWithClass = collection =>
+    collection.replaceWith(path => {
+      const name = path.value.id && path.value.id.name;
+      const param = path.value.params[0];
+      const body = createBodyWithReturn(path.value.body);
 
       if (param) {
         body.body.unshift(createPropsDecl(param));
@@ -108,9 +108,9 @@ module.exports = function(file, api, options) {
   const root = j(file.source);
 
   [
-    root.find(j.FunctionDeclaration),
-    root.find(j.FunctionExpression),
-    root.find(j.ArrowFunctionExpression),
+    root.find(j.FunctionDeclaration).filter(canBeReplaced),
+    root.find(j.FunctionExpression).filter(canBeReplaced),
+    root.find(j.ArrowFunctionExpression).filter(canBeReplaced),
   ].forEach(replaceWithClass);
 
   return root.toSource(printOptions);

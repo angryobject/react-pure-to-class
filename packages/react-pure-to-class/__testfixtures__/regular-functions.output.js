@@ -107,3 +107,16 @@ class MyComponent extends React.Component {
     </ul>);
   }
 }
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { items } = this.props;
+    const lis = items.map(item => <li>{item}</li>);
+
+    return (<ul>{lis}</ul>);
+  }
+}

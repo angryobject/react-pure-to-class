@@ -38,3 +38,9 @@ function MyComponent({ items }) {
     {items.map(item => <li>{item}</li>)}
   </ul>);
 }
+
+function MyComponent({ items }) {
+  const lis = items.map(item => <li>{item}</li>);
+
+  return (<ul>{lis}</ul>);
+}

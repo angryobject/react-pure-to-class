@@ -38,11 +38,11 @@
       "type": "object",
       "title": "React Pure To Class",
       "properties": {
-          "reactPureToClass.typescript": {
-              "type": "boolean",
-              "default": false,
-              "description": "Support TypeScript files. Experimental, may or may not work"
-          }
+        "reactPureToClass.typescript": {
+          "type": "boolean",
+          "default": false,
+          "description": "Support TypeScript files. Experimental, may or may not work"
+        }
       }
     }
   },
@@ -51,10 +51,11 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "jscodeshift": "^0.4.0",
-    "react-pure-to-class": "^1.1.1",
-    "vscode": "^1.1.10",
-    "webpack": "^3.10.0"
+    "jscodeshift": "^0.5.1",
+    "react-pure-to-class": "^1.1.3",
+    "vscode": "^1.1.18",
+    "webpack": "^4.11.1",
+    "webpack-cli": "^3.0.2"
   },
   "repository": {
     "type": "git",
