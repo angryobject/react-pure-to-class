@@ -24,7 +24,11 @@ const MyComponent = function() {
   return <div>bla-bla</div>;
 }
 
-function nonReact(v) {
+const MyComponent = function MyFunction() {
+  return <div>bla-bla</div>;
+}
+
+function NonReact(v) {
   return v.x + v.y;
 }
 

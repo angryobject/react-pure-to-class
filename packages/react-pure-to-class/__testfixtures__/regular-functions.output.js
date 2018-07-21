@@ -63,7 +63,7 @@ class MyComponent extends React.Component {
   }
 }
 
-const MyComponent = class extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -73,7 +73,17 @@ const MyComponent = class extends React.Component {
   }
 }
 
-class nonReact extends React.Component {
+const MyComponent = class MyFunction extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return <div>bla-bla</div>;
+  }
+}
+
+class NonReact extends React.Component {
   constructor(props) {
     super(props);
   }

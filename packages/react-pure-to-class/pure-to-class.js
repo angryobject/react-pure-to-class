@@ -93,17 +93,37 @@ module.exports = function(file, api, options) {
   };
 
   const replaceWithClass = collection =>
-    collection.replaceWith(path => {
-      const name = path.value.id && path.value.id.name;
-      const param = path.value.params[0];
-      const body = createBodyWithReturn(path.value.body);
+    collection
+      .map(path => {
+        const grandParent = path.parent.parent;
+        const hasOwnName = path.value.id && path.value.id.name;
 
-      if (param) {
-        body.body.unshift(createPropsDecl(param));
-      }
+        if (
+          !hasOwnName &&
+          j.VariableDeclaration.check(grandParent.value) &&
+          grandParent.value.declarations.length === 1
+        ) {
+          return grandParent;
+        }
 
-      return createClassComponent(name, body);
-    });
+        return path;
+      })
+      .replaceWith(path => {
+        const isVarDecl = j.VariableDeclaration.check(path.value);
+        const fn = isVarDecl ? path.value.declarations[0].init : path.value;
+
+        const name = isVarDecl
+          ? path.value.declarations[0].id.name
+          : fn.id && fn.id.name;
+        const param = fn.params[0];
+        const body = createBodyWithReturn(fn.body);
+
+        if (param) {
+          body.body.unshift(createPropsDecl(param));
+        }
+
+        return createClassComponent(name, body);
+      });
 
   const root = j(file.source);
 

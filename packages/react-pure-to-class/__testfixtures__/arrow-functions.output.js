@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyComponent = class extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,9 +12,9 @@ const MyComponent = class extends React.Component {
 
     return <div>{props.message}</div>;
   }
-};
+}
 
-const MyComponent = class extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -26,9 +26,9 @@ const MyComponent = class extends React.Component {
 
     return <div>{props.message}</div>;
   }
-};
+}
 
-const MyComponent = class extends React.Component {
+class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -37,9 +37,9 @@ const MyComponent = class extends React.Component {
     const p = this.props;
     return p.children ? <div>{p.children}</div> : null;
   }
-};
+}
 
-export const MyComponent = class extends React.Component {
+export class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -48,7 +48,7 @@ export const MyComponent = class extends React.Component {
     const p = this.props;
     return p.children ? <div>{p.children}</div> : null;
   }
-};
+}
 
 module.exports = class extends React.Component {
   constructor(props) {
@@ -78,7 +78,7 @@ export default class extends React.Component {
   }
 }
 
-const nonReact = class extends React.Component {
+class NonReact extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -87,9 +87,9 @@ const nonReact = class extends React.Component {
     const v = this.props;
     return v.x + v.y;
   }
-};
+}
 
-const StillReact = class extends React.Component {
+class StillReact extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -98,9 +98,9 @@ const StillReact = class extends React.Component {
     const a = <div>bla-bla</div>;
     return 2 + 2;
   }
-};
+}
 
-export const AnotherMyComponent = class extends React.Component {
+export class AnotherMyComponent extends React.Component {
   constructor(props) {
     super(props);
   }

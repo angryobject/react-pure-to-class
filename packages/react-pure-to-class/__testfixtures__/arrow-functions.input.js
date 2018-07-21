@@ -18,7 +18,7 @@ export default props => {
   return <div>{props.message}</div>;
 };
 
-const nonReact = v => v.x + v.y;
+const NonReact = v => v.x + v.y;
 
 const StillReact = () => {
   const a = <div>bla-bla</div>;
