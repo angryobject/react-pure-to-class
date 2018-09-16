@@ -42,6 +42,11 @@
           "type": "boolean",
           "default": false,
           "description": "Support TypeScript files. Experimental, may or may not work"
+        },
+        "reactPureToClass.reactComponent": {
+          "type": "string",
+          "default": "React.Component",
+          "description": "Where to find base React component"
         }
       }
     }

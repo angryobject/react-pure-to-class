@@ -41,7 +41,7 @@ module.exports = vscode => ({
               jscodeshift,
               stats: () => {},
             },
-            {}
+            { reactComponent: config.reactComponent }
           );
         } catch (e) {
           vscode.window.showInformationMessage(
