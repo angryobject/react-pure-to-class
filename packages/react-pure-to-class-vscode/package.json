@@ -25,13 +25,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.reactPureToClass"
+    "onCommand:extension.reactPureToClass",
+    "onCommand:extension.reactClassToPure"
   ],
   "contributes": {
     "commands": [
       {
         "command": "extension.reactPureToClass",
         "title": "React Pure To Class"
+      },
+      {
+        "command": "extension.reactClassToPure",
+        "title": "React Class To Pure"
       }
     ],
     "configuration": {
@@ -47,6 +52,16 @@
           "type": "string",
           "default": "React.Component",
           "description": "Where to find base React component"
+        },
+        "reactPureToClass.classToPureUseArrows": {
+          "type": "boolean",
+          "default": false,
+          "description": "Convert to arrow function or function otherwise"
+        },
+        "reactPureToClass.classToPureDestructuring": {
+          "type": "boolean",
+          "default": false,
+          "description": "Will destructure props in the argument where it is safe to do so"
         }
       }
     }
@@ -57,6 +72,7 @@
   },
   "devDependencies": {
     "jscodeshift": "^0.5.1",
+    "react-codemod": "git+https://git@github.com/reactjs/react-codemod.git",
     "react-pure-to-class": "^1.1.5",
     "vscode": "^1.1.21",
     "webpack": "^4.19.0",
