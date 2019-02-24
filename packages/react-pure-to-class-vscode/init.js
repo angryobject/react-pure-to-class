@@ -1,7 +1,11 @@
 'use strict';
 
 const jscodeshift = require('jscodeshift');
+const getParser = require('jscodeshift/src/getParser');
 const pureToClass = require('react-pure-to-class');
+
+const tsFiles = ['typescript', 'typescriptreact'];
+const supportedFiles = ['javascript', 'javascriptreact', ...tsFiles];
 
 module.exports = vscode => ({
   activate(context) {
@@ -10,9 +14,6 @@ module.exports = vscode => ({
       () => {
         const editor = vscode.window.activeTextEditor;
         const config = vscode.workspace.getConfiguration('reactPureToClass');
-        const supportedLangs = ['javascript', 'javascriptreact'].concat(
-          config.typescript ? ['typescript', 'typescriptreact'] : []
-        );
 
         if (!editor) {
           return;
@@ -20,14 +21,14 @@ module.exports = vscode => ({
 
         const doc = editor.document;
 
-        if (supportedLangs.indexOf(doc.languageId) === -1) {
-          const msg = config.typescript
-            ? 'Only available for javascript/typescript/react file types'
-            : 'Only available for javascript/react file types. Check settings for typescript support';
-
-          vscode.window.showInformationMessage(msg);
+        if (!supportedFiles.includes(doc.languageId)) {
+          vscode.window.showInformationMessage(
+            'Only available for javascript/typescript/react file types'
+          );
           return;
         }
+
+        const parser = tsFiles.includes(doc.languageId) ? 'tsx' : 'babel';
 
         const selection = editor.selection;
         const text = doc.getText(selection);
@@ -41,7 +42,10 @@ module.exports = vscode => ({
               jscodeshift,
               stats: () => {},
             },
-            { reactComponent: config.reactComponent }
+            {
+              parser: getParser(parser),
+              reactComponent: config.reactComponent,
+            }
           );
         } catch (e) {
           vscode.window.showInformationMessage(

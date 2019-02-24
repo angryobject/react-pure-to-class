@@ -1,4 +1,4 @@
-Replaces pure functional react components with class components.
+Replaces pure functional react components with class components. Works both for JavaScript and TypeScript.
 
 Select a block of code, choose `React Pure To Class` from the Command Palette.
 
@@ -45,7 +45,5 @@ It makes some assumptions about functions that can be transformed:
 * the functions should not appear inside other functions, be property of an objects or method of a class
 
 Extension options:
-
-`reactPureToClass.typescript` -  boolean, support TypeScript files, defaults to `false`. Experimental, may or may not work.
 
 `reactPureToClass.reactComponent` -  string, where to find base react component, defaults to `React.Component`.

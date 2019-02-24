@@ -38,11 +38,6 @@
       "type": "object",
       "title": "React Pure To Class",
       "properties": {
-        "reactPureToClass.typescript": {
-          "type": "boolean",
-          "default": false,
-          "description": "Support TypeScript files. Experimental, may or may not work"
-        },
         "reactPureToClass.reactComponent": {
           "type": "string",
           "default": "React.Component",
