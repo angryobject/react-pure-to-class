@@ -1,4 +1,4 @@
-A `jscodeshift` transformer to create react class component from pure functional component.
+A `jscodeshift` transformer to create react class component from pure functional component. Works both for JavaScript and TypeScript.
 
 Turns this:
 

@@ -81,13 +81,19 @@ module.exports = function(file, api, options) {
       j.functionExpression(null, [], body)
     );
 
-  const createClassComponent = (name, renderBody) => {
+  const createClassComponent = (name, renderBody, propsType) => {
     const cls = j.classDeclaration(
       name ? j.identifier(name) : null,
       j.classBody([createConstructor(), createRenderMethod(renderBody)])
     );
 
     cls.superClass = j.template.expression([reactComponent]);
+
+    if (propsType) {
+      cls.superTypeParameters = j.tsTypeParameterInstantiation([
+        propsType.typeAnnotation,
+      ]);
+    }
 
     return cls;
   };
@@ -115,17 +121,22 @@ module.exports = function(file, api, options) {
         const name = isVarDecl
           ? path.value.declarations[0].id.name
           : fn.id && fn.id.name;
-        const param = fn.params[0];
+
+        const props = fn.params[0];
+        const propsType = props && fn.params[0].typeAnnotation;
         const body = createBodyWithReturn(fn.body);
 
-        if (param) {
-          body.body.unshift(createPropsDecl(param));
+        if (props) {
+          delete props.typeAnnotation;
+          body.body.unshift(createPropsDecl(props));
         }
 
-        return createClassComponent(name, body);
+        return createClassComponent(name, body, propsType);
       });
 
-  const root = j(file.source);
+  const root = j(file.source, {
+    parser: options.parser,
+  });
 
   [
     root.find(j.FunctionDeclaration).filter(canBeReplaced),

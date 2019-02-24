@@ -5,7 +5,9 @@ const defineTest = require('jscodeshift/dist/testUtils').defineTest;
 defineTest(__dirname, 'pure-to-class', null, 'regular-functions');
 defineTest(__dirname, 'pure-to-class', null, 'arrow-functions');
 
+const fs = require('fs');
 const jscodeshift = require('jscodeshift');
+const getParser = require('jscodeshift/src/getParser');
 const pureToClass = require('../pure-to-class');
 
 const api = {
@@ -13,7 +15,11 @@ const api = {
   stats: () => {},
 };
 
-const transform = source => pureToClass({ source }, api, {});
+const getFixture = name =>
+  fs.readFileSync(__dirname + `/../__testfixtures__/${name}`, 'utf-8');
+
+const transform = (source, options = {}) =>
+  pureToClass({ source }, api, options);
 
 test('invalid transforms', () => {
   expect(transform('function C(arg1, arg2) {return <span />}')).toBe(
@@ -35,4 +41,11 @@ test('invalid transforms', () => {
   expect(transform('function someFn(a, b) {return (props) => <span />}')).toBe(
     'function someFn(a, b) {return (props) => <span />}'
   );
+});
+
+test('typescript transforms', () => {
+  const inputTS = getFixture('typescript.input.tsx');
+  const outputTS = getFixture('typescript.output.tsx');
+
+  expect(transform(inputTS, { parser: getParser('tsx') })).toBe(outputTS);
 });

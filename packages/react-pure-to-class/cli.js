@@ -2,7 +2,9 @@
 
 const stdin = process.openStdin();
 const jscodeshift = require('jscodeshift');
+const getParser = require('jscodeshift/src/getParser');
 const pureToClass = require('./pure-to-class');
+const parser = getParser(process.argv[2] || 'babel');
 
 let input = '';
 
@@ -20,7 +22,9 @@ stdin.on('end', function() {
         jscodeshift,
         stats: () => {},
       },
-      {}
+      {
+        parser,
+      }
     );
   } finally {
     console.log(output || input); // eslint-disable-line no-console
